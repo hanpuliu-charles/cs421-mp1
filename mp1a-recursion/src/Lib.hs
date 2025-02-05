@@ -43,7 +43,12 @@ mydrop n (x:xs) = mydrop (n-1) xs
 --- ### rev
 
 -- don't forget to put the type declaration or you will lose points!
-rev = undefined
+rev :: [a] -> [a]
+rev (x:xs) = aux (x:xs) [] 
+    where 
+        aux [] acc = acc
+        aux (y:ys) acc = y:acc
+
 
 --- ### app
 
