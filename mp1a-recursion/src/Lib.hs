@@ -17,6 +17,7 @@ import Prelude hiding ( take, drop, reverse
 -- When you are allowed to use builtin functions Prepend them with "P."
 -- for example `P.take`
 import qualified Prelude as P
+import System.Win32 (COORD(yPos))
 
 --- Problems
 --- ========
@@ -53,21 +54,28 @@ rev (x:xs) = aux (x:xs) []
 --- ### app
 
 -- don't forget to put the type declaration or you will lose points!
-app = undefined
+app :: [a] -> [a] -> [a]
+app [] y = y
+app (x:xs) y = x : app xs y 
 
 --- ### inclist
 
 -- don't forget to put the type declaration or you will lose points!
-inclist = undefined
+inclist :: Num a => [a] -> [a]
+inclist [] = []
+inclist (x:xs) = (x+1) : inclist xs
 
 --- ### sumlist
 
 -- don't forget to put the type declaration or you will lose points!
-sumlist = undefined
+sumlist :: Num a => [a] -> a
+sumlist [] = 0
+sumlist (x:xs) = x + sumlist xs
 
 --- ### myzip
 
 -- don't forget to put the type declaration or you will lose points!
+myzip :: [a] -> [b] -> [(a,b)]
 myzip = undefined
 
 --- ### addpairs
