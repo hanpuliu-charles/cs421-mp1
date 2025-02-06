@@ -48,8 +48,7 @@ rev :: [a] -> [a]
 rev (x:xs) = aux (x:xs) [] 
     where 
         aux [] acc = acc
-        aux (y:ys) acc = y:acc
-
+        aux (y:ys) acc = aux ys (y:acc)
 
 --- ### app
 
@@ -76,7 +75,9 @@ sumlist (x:xs) = x + sumlist xs
 
 -- don't forget to put the type declaration or you will lose points!
 myzip :: [a] -> [b] -> [(a,b)]
-myzip = undefined
+myzip [] _ = []
+myzip _ [] = []
+myzip (x:xs) (y:ys) = (x,y):myzip xs ys
 
 --- ### addpairs
 
