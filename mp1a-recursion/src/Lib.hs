@@ -91,8 +91,8 @@ addpairs a b = aux (myzip a b)
 --- ### ones
 
 -- don't forget to put the type declaration or you will lose points!
-ones = undefined
-
+ones :: [Integer]
+ones = 1:ones
 --- ### nats
 
 -- don't forget to put the type declaration or you will lose points!
