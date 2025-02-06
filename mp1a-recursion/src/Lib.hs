@@ -132,8 +132,13 @@ union (x:xs) (y:ys)
 --- ### intersect
 
 -- don't forget to put the type declaration or you will lose points!
-intersect = undefined
-
+intersect :: Ord a => [a] -> [a] -> [a] 
+intersect x [] = []
+intersect [] y = []
+intersect (x:xs) (y:ys) 
+    | x == y = x:intersect xs ys
+    | x < y  = intersect xs (y:ys)
+    | otherwise = intersect (x:xs) ys
 --- ### powerset
 
 -- don't forget to put the type declaration or you will lose points!
