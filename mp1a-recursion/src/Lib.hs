@@ -17,7 +17,6 @@ import Prelude hiding ( take, drop, reverse
 -- When you are allowed to use builtin functions Prepend them with "P."
 -- for example `P.take`
 import qualified Prelude as P
-import System.Win32 (COORD(yPos))
 
 --- Problems
 --- ========
@@ -122,7 +121,13 @@ add y (x:xs)
 --- ### union
 
 -- don't forget to put the type declaration or you will lose points!
-union = undefined
+union :: Ord a => [a] -> [a] -> [a] 
+union x [] = x
+union [] y = y
+union (x:xs) (y:ys) 
+    | x == y = x:union xs ys
+    | x < y  = x:union xs (y:ys)
+    | otherwise = y:union (x:xs) ys
 
 --- ### intersect
 
