@@ -45,8 +45,8 @@ mydrop n (x:xs) = mydrop (n-1) xs
 
 -- don't forget to put the type declaration or you will lose points!
 rev :: [a] -> [a]
-rev (x:xs) = aux (x:xs) [] 
-    where 
+rev (x:xs) = aux (x:xs) []
+    where
         aux [] acc = acc
         aux (y:ys) acc = aux ys (y:acc)
 
@@ -55,7 +55,7 @@ rev (x:xs) = aux (x:xs) []
 -- don't forget to put the type declaration or you will lose points!
 app :: [a] -> [a] -> [a]
 app [] y = y
-app (x:xs) y = x : app xs y 
+app (x:xs) y = x : app xs y
 
 --- ### inclist
 
@@ -82,7 +82,7 @@ myzip (x:xs) (y:ys) = (x,y):myzip xs ys
 --- ### addpairs
 
 -- don't forget to put the type declaration or you will lose points!
-addpairs :: (Num a) => [a] -> [a] -> [a] 
+addpairs :: (Num a) => [a] -> [a] -> [a]
 addpairs a b = aux (myzip a b)
     where
         aux [] = []
@@ -112,7 +112,12 @@ fib = 0 : 1 : addpairs fib (tail fib)
 --- ### add
 
 -- don't forget to put the type declaration or you will lose points!
-add = undefined
+add :: Ord a => a -> [a] -> [a]
+add y [] = [y]
+add y (x:xs) 
+    | x > y = y:x:xs
+    | otherwise = x:add y xs
+
 
 --- ### union
 
