@@ -82,7 +82,11 @@ myzip (x:xs) (y:ys) = (x,y):myzip xs ys
 --- ### addpairs
 
 -- don't forget to put the type declaration or you will lose points!
-addpairs = undefined
+addpairs :: (Num a) => [a] -> [a] -> [a] 
+addpairs a b = aux (myzip a b)
+    where
+        aux [] = []
+        aux ((x,y):xs) =(x+y):aux xs
 
 --- ### ones
 
