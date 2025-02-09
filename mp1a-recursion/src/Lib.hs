@@ -28,15 +28,15 @@ import qualified Prelude as P
 
 -- don't forget to put the type declaration or you will lose points!
 mytake :: Int -> [a] -> [a]
-mytake 0 _ = []
-mytake n [] = []
+mytake n _ | n <= 0 = []
+mytake _ [] = []
 mytake n (x:xs) = x : mytake (n - 1) xs
 --- ### mydrop
 
 -- don't forget to put the type declaration or you will lose points!
 
 mydrop :: Int -> [a] -> [a]
-mydrop 0 (x:xs) = x:xs
+mydrop n (x:xs) | n <= 0 = x:xs
 mydrop _ [] = []
 mydrop n (x:xs) = mydrop (n-1) xs
 
@@ -44,6 +44,7 @@ mydrop n (x:xs) = mydrop (n-1) xs
 
 -- don't forget to put the type declaration or you will lose points!
 rev :: [a] -> [a]
+rev [] = []
 rev (x:xs) = aux (x:xs) []
     where
         aux [] acc = acc
@@ -96,7 +97,7 @@ ones = 1:ones
 
 -- don't forget to put the type declaration or you will lose points!
 nats :: [Integer]
-nats = [1..]
+nats = [0..]
 
 --- ### fib
 
@@ -114,6 +115,7 @@ fib = 0 : 1 : addpairs fib (tail fib)
 add :: Ord a => a -> [a] -> [a]
 add y [] = [y]
 add y (x:xs) 
+    | x == y = (x:xs)
     | x > y = y:x:xs
     | otherwise = x:add y xs
 
@@ -142,7 +144,13 @@ intersect (x:xs) (y:ys)
 --- ### powerset
 
 -- don't forget to put the type declaration or you will lose points!
-powerset = undefined
+powerset :: Ord a => [a] -> [[a]] 
+powerset [] = [[]]
+powerset (x:xs) = union (helper x ps) ps 
+    where 
+        ps = powerset xs
+        helper z [] = []
+        helper z (y:ys) = (add z y) : (helper z ys)
 
 --- Higher Order Functions
 --- ----------------------
@@ -150,9 +158,11 @@ powerset = undefined
 --- ### inclist'
 
 -- don't forget to put the type declaration or you will lose points!
-inclist' = undefined
+inclist' :: Num a => [a] -> [a]
+inclist' = P.map (+1) 
 
 --- ### sumlist'
 
 -- don't forget to put the type declaration or you will lose points!
-sumlist' = undefined
+sumlist' :: (Num a) => [a] -> a
+sumlist' = P.foldl (+) 0
