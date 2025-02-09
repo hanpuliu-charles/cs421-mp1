@@ -34,7 +34,7 @@ list2cons (x:xs) = Cons x (list2cons xs)
 -- don't forget to put the type declaration or you will lose points!
 cons2list :: List a -> [a]
 cons2list Nil = []
-cons2list Cons x y = x : cons2list y
+cons2list (Cons x y) = x : cons2list y
 
 --- ### eval
 
@@ -50,7 +50,9 @@ eval( MultExp  x) = foldl (*) 1 (map eval x)
 --- ### list2cons'
 
 -- don't forget to put the type declaration or you will lose points!
-list2cons' = undefined
+list2cons' :: [a] -> List a
+list2cons' x = foldr (Cons) Nil x
+
 
 --- ### BinTree
 
